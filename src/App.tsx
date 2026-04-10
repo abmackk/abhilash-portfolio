@@ -821,27 +821,27 @@ function Projects() {
       <div className="projects-grid">
         {projects.map((project, idx) => (
           <AnimatedSection key={idx} delay={idx * 0.1}>
-            <TiltCard className="glass-card project-card">
-              <div className="project-card-inner">
-                <div className="project-icon">{project.icon}</div>
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
-                </div>
-                <p className="project-desc">{project.desc}</p>
-                <div className="project-meta">
-                  <div className="project-tech">
-                    {project.tech.slice(0, 4).map(tech => (
-                      <span key={tech} className="tech-tag">{tech}</span>
-                    ))}
-                    {project.tech.length > 4 && (
-                      <span className="tech-tag more">+{project.tech.length - 4}</span>
-                    )}
-                  </div>
+            <TiltCard className="project-card-full">
+              <div className="project-icon">{project.icon}</div>
+              <div className="project-header">
+                <h3 className="project-title">{project.title}</h3>
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link">
+                    <ExternalLink size={16} />
+                  </a>
+                )}
+              </div>
+              <p className="project-tagline">{project.tagline}</p>
+              <ul className="project-highlights">
+                {project.highlights.map((highlight, i) => (
+                  <li key={i}>{highlight}</li>
+                ))}
+              </ul>
+              <div className="project-meta">
+                <div className="project-tech">
+                  {project.tech.map(tech => (
+                    <span key={tech} className="tech-tag">{tech}</span>
+                  ))}
                 </div>
               </div>
             </TiltCard>
@@ -856,22 +856,46 @@ const projects = [
   {
     icon: <Zap size={28} />,
     title: 'AI Powered CRM Tool',
-    desc: 'Architected comprehensive infrastructure for an AI-powered CRM. Implemented VPC, Jenkins CI/CD, and PostgreSQL cluster management for 22+ databases.',
-    tech: ['EC2', 'Postgres', 'Jenkins', 'VPC', 'Bash', 'Lambda'],
+    tagline: 'AI-powered tools to get more customers & give them a better experience',
+    highlights: [
+      'Architected comprehensive infrastructure from ground up - design, implementation, and optimization',
+      'Built VPC with public/private subnets, NAT, Network ACL, Security Groups, and Internet Gateway',
+      'Managed cluster of 22 PostgreSQL databases with Prisma migrations and PgBouncer optimization',
+      'Pioneered Jenkins-driven multi-stack CI/CD strategy optimizing release cycles',
+      'Automated cross-region snapshots, database dumps, and environment shutdown/restart via Bash scripts',
+      'Led ISO, SOC 2, HIPAA compliance with VAPT assessments and Business Continuity Planning'
+    ],
+    tech: ['EC2', 'VPC', 'S3', 'RDS', 'Jenkins', 'PostgreSQL', 'PgBouncer', 'IAM', 'CloudWatch', 'WAF', 'Lambda', 'Bash', 'Nginx'],
     liveUrl: '#'
   },
   {
     icon: <Terminal size={28} />,
     title: 'Level 3 AI Chatbot',
-    desc: 'Human-level conversational AI for E-commerce. Designed a scalable, fault-tolerant system with RabbitMQ and Redis for WhatsApp/Instagram automation.',
-    tech: ['ALB/ASG', 'MongoDB', 'Redis', 'RabbitMQ', 'ECS'],
+    tagline: 'Human-level conversational AI for E-commerce - WhatsApp, Instagram, Messenger',
+    highlights: [
+      'Designed scalable, highly available, and fault-tolerant system from scratch on AWS',
+      'Custom VPCs with multiple public/private subnets distributed across availability zones',
+      'Implemented Auto Scaling and ELB for high availability traffic distribution',
+      'Configured RabbitMQ for real-time message queuing and Redis for in-memory caching',
+      'Facilitated CI/CD pipelines with GitLab integration for automated deployments',
+      '10+ chatbot workflows for personalized product recommendations and query handling'
+    ],
+    tech: ['EC2', 'VPC', 'ALB', 'ASG', 'MongoDB', 'Redis', 'RabbitMQ', 'Route53', 'IAM', 'ACM', 'Prometheus', 'Grafana', 'GitLab'],
     liveUrl: '#'
   },
   {
     icon: <GraduationCap size={28} />,
     title: 'Online Hobby Class Platform',
-    desc: 'Educational platform for children under 12. Configured VPC networking, automated backups, and streamlined React/Node deployments using PM2.',
-    tech: ['ReactJS', 'NodeJS', 'RDS', 'WAF', 'S3', 'CloudFront'],
+    tagline: 'Educational platform for children under 12 with professional mentors',
+    highlights: [
+      'Planned and configured VPC infrastructure with public/private subnets and security groups',
+      'Created snapshots for EC2 instance backups and launch configurations',
+      'Streamlined React/NodeJS deployments with Nginx reverse proxy and PM2 process manager',
+      'Configured automated SSL certificates with Certbot renewal',
+      'Managed Jenkins build and automation jobs for continuous integration',
+      'Implemented FTP, SFTP & AWS Transfer Family for seamless file transfers'
+    ],
+    tech: ['EC2', 'VPC', 'S3', 'ALB', 'ASG', 'RDS', 'Route53', 'WAF', 'IAM', 'KMS', 'Jenkins', 'Nginx', 'PM2'],
     liveUrl: '#'
   }
 ];
