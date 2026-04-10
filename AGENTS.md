@@ -274,4 +274,46 @@ src/
 
 ---
 
+## Developer Habits & Preferences
+
+### User Profile
+- **Name:** Abhilash Makode
+- **Role:** AWS Cloud Engineer & DevOps Specialist
+- **GitHub:** https://github.com/abmackk
+- **Portfolio:** https://abmackk.github.io/abhilash-portfolio/
+
+### Coding Preferences
+
+| Category | Preference |
+|----------|------------|
+| **Explanations** | Concise, direct answers. 1-3 sentences preferred. Avoid lengthy preambles. |
+| **Code Changes** | No explanatory comments unless explicitly asked |
+| **Planning** | User prefers to understand the issue first before resolving |
+| **Questions** | Ask for clarification before major changes |
+
+### Git Workflow
+1. Always work on `opencode` branch
+2. Commit after each feature/fix completion
+3. Push to GitHub after commits
+4. Use clear commit messages: `feat:`, `fix:`, `docs:`, `ci:`, `refactor:`
+
+### Deployment
+- **CI/CD:** GitHub Actions workflow at `.github/workflows/deploy.yml`
+- **Hosting:** GitHub Pages (auto-deploys on push to `opencode`)
+- **URL:** https://abmackk.github.io/abhilash-portfolio/
+- **Vite Config:** `base: '/abhilash-portfolio/'` (required for subdirectory)
+
+### Design Preferences
+- **Theme:** Neon multicolor (cyan, purple, pink, green, blue)
+- **Animations:** Smooth, modern, subtle
+- **Components:** Keep marquee/carousels, use glass-morphism cards
+- **Port Mapping:** Use `-p` flag with `docker run` (not `docker create`)
+
+### Docker Notes
+- User works with Node.js containers
+- Always verify port mappings with `docker ps`
+- Use `docker run -p` not `docker create` for port exposure
+
+---
+
 *Last updated: April 2026*
