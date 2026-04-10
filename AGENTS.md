@@ -4,6 +4,23 @@ This document provides instructions and conventions for agents working in this c
 
 ---
 
+## ⚠️ GIT BRANCH: ALWAYS USE `opencode`
+
+**CRITICAL:** All commits MUST be made to the `opencode` branch. Never commit to `master` or `main`.
+
+```bash
+# Before any git operations, ensure you're on opencode branch:
+git checkout opencode
+
+# Commit workflow:
+git add -A
+git commit -m "your message"
+
+# DO NOT use: git checkout master, git checkout main, or commit to master/main
+```
+
+---
+
 ## Project Overview
 
 A modern DevOps portfolio website for **Abhilash Makode** - AWS Cloud Engineer & DevOps Specialist.
