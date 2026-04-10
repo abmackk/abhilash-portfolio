@@ -5,7 +5,8 @@ import {
   ArrowRight, Server, Cloud, Database, Shield,
   Terminal, Zap, Briefcase, GraduationCap, Award,
   Phone, MapPin, Send, ChevronDown, Menu, X,
-  ExternalLink, Clock, CheckCircle2
+  ExternalLink, Clock, CheckCircle2,
+  Monitor, Database as DbIcon, Lock, Code, Layers, Cpu, GitBranch
 } from 'lucide-react';
 import './App.css';
 
@@ -875,6 +876,36 @@ const projects = [
   }
 ];
 
+function SkillBadge({ skill, index }: { skill: string; index: number }) {
+  const colors = [
+    { bg: 'rgba(0, 255, 245, 0.15)', border: 'rgba(0, 255, 245, 0.4)', glow: 'rgba(0, 255, 245, 0.3)' },
+    { bg: 'rgba(191, 0, 255, 0.15)', border: 'rgba(191, 0, 255, 0.4)', glow: 'rgba(191, 0, 255, 0.3)' },
+    { bg: 'rgba(255, 0, 170, 0.15)', border: 'rgba(255, 0, 170, 0.4)', glow: 'rgba(255, 0, 170, 0.3)' },
+    { bg: 'rgba(0, 255, 136, 0.15)', border: 'rgba(0, 255, 136, 0.4)', glow: 'rgba(0, 255, 136, 0.3)' },
+    { bg: 'rgba(0, 136, 255, 0.15)', border: 'rgba(0, 136, 255, 0.4)', glow: 'rgba(0, 136, 255, 0.3)' },
+  ];
+  const color = colors[index % colors.length];
+  
+  return (
+    <motion.div
+      className="skill-badge"
+      style={{
+        background: color.bg,
+        borderColor: color.border,
+        boxShadow: `0 0 15px ${color.glow}`,
+      }}
+      whileHover={{ 
+        scale: 1.1, 
+        boxShadow: `0 0 25px ${color.glow}, 0 0 50px ${color.glow}`
+      }}
+      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+    >
+      <span className="skill-badge-dot" style={{ background: color.border }} />
+      {skill}
+    </motion.div>
+  );
+}
+
 function Skills() {
   return (
     <section id="skills">
@@ -888,20 +919,17 @@ function Skills() {
 
       <TechMarquee />
 
-      <div className="skills-container">
+      <div className="skills-grid">
         {skillCategories.map((cat, idx) => (
-          <AnimatedSection key={idx} delay={idx * 0.1}>
-            <div className="glass-card skill-category">
-              <h3>{cat.title}</h3>
-              <div className="skill-tags">
-                {cat.skills.map(skill => (
-                  <motion.span 
-                    key={skill} 
-                    className="skill-tag"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                  >
-                    {skill}
-                  </motion.span>
+          <AnimatedSection key={idx} delay={idx * 0.08}>
+            <div className="skill-card">
+              <div className="skill-card-header">
+                <div className="skill-icon">{cat.icon}</div>
+                <h3>{cat.title}</h3>
+              </div>
+              <div className="skill-badges">
+                {cat.skills.map((skill, i) => (
+                  <SkillBadge key={skill} skill={skill} index={i} />
                 ))}
               </div>
             </div>
@@ -914,36 +942,44 @@ function Skills() {
 
 const skillCategories = [
   {
-    title: 'AWS Cloud Services',
-    skills: ['EC2', 'VPC', 'S3', 'Route53', 'IAM', 'RDS', 'Lambda', 'WAF', 'ASG', 'ELB', 'CloudFront', 'CloudWatch', 'ECS', 'EKS', 'EFS', 'FSx', 'Secrets Manager', 'Systems Manager']
+    icon: <Cloud size={24} />,
+    title: 'Cloud Platforms',
+    skills: ['AWS', 'Azure', 'GCP', 'EC2', 'VPC', 'S3', 'Lambda', 'ECS', 'EKS', 'Route53', 'IAM', 'CloudFront']
   },
   {
-    title: 'Multi-Cloud & Infrastructure',
-    skills: ['AWS', 'Azure', 'GCP', 'Terraform', 'CloudFormation', 'Pulumi', 'Ansible', 'Chef', 'Puppet', 'Vault', 'Consul', 'Nomad']
+    icon: <Layers size={24} />,
+    title: 'Infrastructure as Code',
+    skills: ['Terraform', 'CloudFormation', 'Pulumi', 'Ansible', 'Chef', 'Puppet', 'Vault', 'Consul', 'Nomad']
   },
   {
-    title: 'DevOps & CI/CD',
-    skills: ['Git', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'Bitbucket Pipelines', 'ArgoCD', 'Tekton', 'Spinnaker', 'CircleCI', 'Travis CI', 'Drone']
+    icon: <GitBranch size={24} />,
+    title: 'CI/CD & DevOps',
+    skills: ['Git', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'ArgoCD', 'Tekton', 'Spinnaker', 'Docker', 'Helm']
   },
   {
-    title: 'Containers & Orchestration',
-    skills: ['Docker', 'Kubernetes', 'Helm', 'Kustomize', 'Prometheus', 'Grafana', 'Istio', 'Linkerd', 'Envoy', 'Harbor', 'Nexus', 'Artifactory']
+    icon: <Monitor size={24} />,
+    title: 'Containers & K8s',
+    skills: ['Docker', 'Kubernetes', 'Helm', 'Kustomize', 'Istio', 'Linkerd', 'Harbor', 'Nexus', 'Artifactory']
   },
   {
-    title: 'Databases & Cache',
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'DynamoDB', 'Aurora', 'PgBouncer', 'Memcached', 'CouchDB', 'Cassandra', 'Neo4j']
+    icon: <DbIcon size={24} />,
+    title: 'Databases',
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'DynamoDB', 'Aurora', 'Cassandra', 'Neo4j']
   },
   {
+    icon: <Cpu size={24} />,
     title: 'Monitoring & Observability',
-    skills: ['CloudWatch', 'Datadog', 'New Relic', 'Splunk', 'ELK Stack', 'Grafana', 'Prometheus', 'Jaeger', 'Zipkin', 'PagerDuty', 'OpsGenie', 'ThousandEyes']
+    skills: ['CloudWatch', 'Datadog', 'Prometheus', 'Grafana', 'Splunk', 'ELK Stack', 'Jaeger', 'PagerDuty']
   },
   {
+    icon: <Lock size={24} />,
     title: 'Security & Compliance',
-    skills: ['IAM', 'WAF', 'Shield', 'GuardDuty', 'Security Hub', 'Macie', 'KMS', 'ACM', 'SOC 2', 'ISO 27001', 'HIPAA', 'GDPR', 'PCI-DSS']
+    skills: ['WAF', 'Shield', 'GuardDuty', 'KMS', 'ACM', 'SOC 2', 'ISO 27001', 'HIPAA', 'PCI-DSS', 'VAPT']
   },
   {
-    title: 'Programming & Scripting',
-    skills: ['Bash', 'Shell', 'Python', 'Go', 'JavaScript', 'TypeScript', 'YAML', 'HCL', 'PowerShell', 'Ruby', 'Node.js', 'Rust']
+    icon: <Code size={24} />,
+    title: 'Programming',
+    skills: ['Bash', 'Python', 'Go', 'TypeScript', 'JavaScript', 'YAML', 'HCL', 'PowerShell', 'Node.js']
   }
 ];
 
