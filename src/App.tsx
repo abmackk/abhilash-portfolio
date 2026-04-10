@@ -2,12 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, useInView, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Github, Linkedin, 
-  ArrowRight, Server, Cloud, Database, Shield,
+  Server, Cloud, Database, Shield,
   Terminal, Zap, Briefcase, GraduationCap, Award,
   Phone, MapPin, Send, ChevronDown, Menu, X,
   ExternalLink, Clock, CheckCircle2,
   Monitor, Database as DbIcon, Lock, Code, Layers, Cpu, GitBranch,
-  Download, FileText, FileBadge, Sparkles
+  Download, FileText, FileBadge, Sparkles,
+  ArrowRight
 } from 'lucide-react';
 import './App.css';
 
@@ -898,6 +899,51 @@ const projects = [
     ],
     tech: ['EC2', 'VPC', 'S3', 'ALB', 'ASG', 'RDS', 'Route53', 'WAF', 'IAM', 'KMS', 'Jenkins', 'Nginx', 'PM2'],
     liveUrl: '#'
+  },
+  {
+    icon: <Server size={28} />,
+    title: 'Fintech Trading Platform',
+    tagline: 'High-frequency trading infrastructure with real-time data processing',
+    highlights: [
+      'Architected low-latency infrastructure for real-time market data processing and analysis',
+      'Deployed EKS clusters with horizontal pod autoscaling for peak trading volumes',
+      'Implemented Redis clusters for sub-millisecond data caching and session management',
+      'Built automated disaster recovery with cross-region failover and data replication',
+      'Configured API Gateway with WAF protection and DDoS mitigation',
+      'Set up comprehensive monitoring with Datadog for trading metrics and alerts'
+    ],
+    tech: ['EKS', 'Redis', 'Lambda', 'API Gateway', 'WAF', 'RDS', 'ElastiCache', 'CloudWatch', 'Terraform', 'Docker', 'Datadog'],
+    liveUrl: '#'
+  },
+  {
+    icon: <Shield size={28} />,
+    title: 'Healthcare Compliance System',
+    tagline: 'HIPAA-compliant cloud infrastructure for healthcare data management',
+    highlights: [
+      'Designed HIPAA-compliant infrastructure with encryption at rest and in transit',
+      'Implemented VPC endpoints for secure private connectivity to AWS services',
+      'Configured GuardDuty and Security Hub for continuous security monitoring',
+      'Built automated compliance reporting and audit trail logging',
+      'Deployed multi-layer security with IAM roles, KMS keys, and resource policies',
+      'Established automated backup and recovery with RDS snapshots and S3 versioning'
+    ],
+    tech: ['VPC', 'RDS', 'S3', 'KMS', 'IAM', 'GuardDuty', 'Security Hub', 'CloudTrail', 'WAF', 'Shield', 'Lambda'],
+    liveUrl: '#'
+  },
+  {
+    icon: <Cloud size={28} />,
+    title: 'Multi-Cloud Migration',
+    tagline: 'Enterprise migration from on-premise to AWS with hybrid connectivity',
+    highlights: [
+      'Led migration of 50+ servers from on-premise datacenter to AWS infrastructure',
+      'Implemented Site-to-Site VPN and Direct Connect for hybrid cloud architecture',
+      'Deployed AWS Directory Service for seamless AD integration and SSO',
+      'Automated server provisioning with Systems Manager and CloudFormation',
+      'Configured cost allocation tags and budgets for multi-department billing',
+      'Reduced infrastructure costs by 40% through rightsizing and reserved instances'
+    ],
+    tech: ['EC2', 'VPC', 'Direct Connect', 'VPN', 'Systems Manager', 'CloudFormation', 'S3', 'IAM', 'CloudWatch', 'Cost Explorer'],
+    liveUrl: '#'
   }
 ];
 
@@ -932,6 +978,8 @@ function SkillBadge({ skill, index }: { skill: string; index: number }) {
 }
 
 function Skills() {
+  const [activeCategory, setActiveCategory] = useState(0);
+  
   return (
     <section id="skills">
       <AnimatedSection>
@@ -944,23 +992,39 @@ function Skills() {
 
       <TechMarquee />
 
-      <div className="skills-grid">
-        {skillCategories.map((cat, idx) => (
-          <AnimatedSection key={idx} delay={idx * 0.08}>
-            <div className="skill-card">
-              <div className="skill-card-header">
-                <div className="skill-icon">{cat.icon}</div>
-                <h3>{cat.title}</h3>
-              </div>
-              <div className="skill-badges">
-                {cat.skills.map((skill, i) => (
-                  <SkillBadge key={skill} skill={skill} index={i} />
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
+      <AnimatedSection>
+        <div className="skills-tabs">
+          {skillCategories.map((cat, idx) => (
+            <motion.button
+              key={idx}
+              className={`skill-tab ${activeCategory === idx ? 'active' : ''}`}
+              onClick={() => setActiveCategory(idx)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="skill-tab-icon">{cat.icon}</span>
+              <span className="skill-tab-title">{cat.title}</span>
+            </motion.button>
+          ))}
+        </div>
+
+        <motion.div 
+          className="skills-panel"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="skills-panel-header">
+            <span className="skill-tab-icon large">{skillCategories[activeCategory].icon}</span>
+            <h3>{skillCategories[activeCategory].title}</h3>
+          </div>
+          <div className="skills-panel-grid">
+            {skillCategories[activeCategory].skills.map((skill, i) => (
+              <SkillBadge key={skill} skill={skill} index={i} />
+            ))}
+          </div>
+        </motion.div>
+      </AnimatedSection>
     </section>
   );
 }
@@ -969,42 +1033,42 @@ const skillCategories = [
   {
     icon: <Cloud size={24} />,
     title: 'Cloud Platforms',
-    skills: ['AWS', 'Azure', 'GCP', 'EC2', 'VPC', 'S3', 'Lambda', 'ECS', 'EKS', 'Route53', 'IAM', 'CloudFront']
+    skills: ['AWS', 'Azure', 'GCP', 'EC2', 'VPC', 'S3', 'Lambda', 'ECS', 'EKS', 'Route53', 'IAM', 'CloudFront', 'RDS', 'SQS', 'SNS']
   },
   {
     icon: <Layers size={24} />,
     title: 'Infrastructure as Code',
-    skills: ['Terraform', 'CloudFormation', 'Pulumi', 'Ansible', 'Chef', 'Puppet', 'Vault', 'Consul', 'Nomad']
+    skills: ['Terraform', 'CloudFormation', 'Pulumi', 'Ansible', 'Chef', 'Puppet', 'Vault', 'Consul', 'Nomad', 'SAM', 'CDK']
   },
   {
     icon: <GitBranch size={24} />,
     title: 'CI/CD & DevOps',
-    skills: ['Git', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'ArgoCD', 'Tekton', 'Spinnaker', 'Docker', 'Helm']
+    skills: ['Git', 'GitHub Actions', 'Jenkins', 'GitLab CI', 'ArgoCD', 'Tekton', 'Spinnaker', 'Docker', 'Helm', 'Kustomize', 'Bitbucket']
   },
   {
     icon: <Monitor size={24} />,
     title: 'Containers & K8s',
-    skills: ['Docker', 'Kubernetes', 'Helm', 'Kustomize', 'Istio', 'Linkerd', 'Harbor', 'Nexus', 'Artifactory']
+    skills: ['Docker', 'Kubernetes', 'Helm', 'Kustomize', 'Istio', 'Linkerd', 'Harbor', 'Nexus', 'Artifactory', 'ECS', 'Fargate', 'EKS']
   },
   {
     icon: <DbIcon size={24} />,
     title: 'Databases',
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'DynamoDB', 'Aurora', 'Cassandra', 'Neo4j']
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'DynamoDB', 'Aurora', 'Cassandra', 'Neo4j', 'PgBouncer', 'RDS']
   },
   {
     icon: <Cpu size={24} />,
     title: 'Monitoring & Observability',
-    skills: ['CloudWatch', 'Datadog', 'Prometheus', 'Grafana', 'Splunk', 'ELK Stack', 'Jaeger', 'PagerDuty']
+    skills: ['CloudWatch', 'Datadog', 'Prometheus', 'Grafana', 'Splunk', 'ELK Stack', 'Jaeger', 'PagerDuty', 'ThousandEyes', 'New Relic']
   },
   {
     icon: <Lock size={24} />,
     title: 'Security & Compliance',
-    skills: ['WAF', 'Shield', 'GuardDuty', 'KMS', 'ACM', 'SOC 2', 'ISO 27001', 'HIPAA', 'PCI-DSS', 'VAPT']
+    skills: ['WAF', 'Shield', 'GuardDuty', 'KMS', 'ACM', 'SOC 2', 'ISO 27001', 'HIPAA', 'PCI-DSS', 'VAPT', 'Security Hub', 'Macie']
   },
   {
     icon: <Code size={24} />,
     title: 'Programming',
-    skills: ['Bash', 'Python', 'Go', 'TypeScript', 'JavaScript', 'YAML', 'HCL', 'PowerShell', 'Node.js']
+    skills: ['Bash', 'Python', 'Go', 'TypeScript', 'JavaScript', 'YAML', 'HCL', 'PowerShell', 'Node.js', 'Rust', 'Ruby']
   }
 ];
 
@@ -1112,6 +1176,12 @@ function Contact() {
     setTimeout(() => setSubmitted(false), 3000);
   };
 
+  const contactMethods = [
+    { icon: <Mail size={24} />, label: 'Email', value: 'abhilash.makode@outlook.com', href: 'mailto:abhilash.makode@outlook.com' },
+    { icon: <Phone size={24} />, label: 'Phone', value: '+91 8767543039', href: 'tel:+918767543039' },
+    { icon: <MapPin size={24} />, label: 'Location', value: 'Hyderabad, India', href: '#' },
+  ];
+
   return (
     <section id="contact">
       <AnimatedSection>
@@ -1122,94 +1192,100 @@ function Contact() {
         </div>
       </AnimatedSection>
 
-      <div className="contact-grid">
+      <div className="contact-container">
         <AnimatedSection delay={0.1}>
-          <div className="glass-card contact-info">
-            <h3>Contact Information</h3>
-            <p>
-              I'm always open to discussing new projects, creative ideas, or opportunities to 
-              be part of your vision. Feel free to reach out!
-            </p>
-
-            <div className="contact-item">
-              <div className="contact-icon"><Mail size={22} /></div>
-              <div className="contact-details">
-                <span>Email</span>
-                <small>abhilash.makode@outlook.com</small>
+          <div className="contact-left">
+            <div className="contact-card">
+              <div className="contact-card-header">
+                <div className="contact-avatar">AM</div>
+                <div>
+                  <h3>Abhilash Makode</h3>
+                  <p>AWS Cloud Engineer & DevOps Specialist</p>
+                </div>
+              </div>
+              <div className="availability-badge large">
+                <span className="availability-dot" />
+                <span>Available for new opportunities</span>
               </div>
             </div>
 
-            <div className="contact-item">
-              <div className="contact-icon"><Phone size={22} /></div>
-              <div className="contact-details">
-                <span>Phone</span>
-                <small>+91 8767543039</small>
+            <div className="contact-methods">
+              {contactMethods.map((method, idx) => (
+                <motion.a
+                  key={idx}
+                  href={method.href}
+                  className="contact-method-item"
+                  whileHover={{ scale: 1.02, x: 10 }}
+                >
+                  <div className="contact-method-icon">{method.icon}</div>
+                  <div className="contact-method-info">
+                    <span className="contact-method-label">{method.label}</span>
+                    <span className="contact-method-value">{method.value}</span>
+                  </div>
+                  <ArrowRight size={18} className="contact-method-arrow" />
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="contact-socials">
+              <h4>Connect With Me</h4>
+              <div className="social-links large">
+                <motion.a 
+                  href="https://github.com/abhilashmakode" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Github size={24} />
+                  <span>GitHub</span>
+                </motion.a>
+                <motion.a 
+                  href="https://linkedin.com/in/abhilashmakode" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="social-link"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Linkedin size={24} />
+                  <span>LinkedIn</span>
+                </motion.a>
+                <motion.a 
+                  href="mailto:abhilash.makode@outlook.com" 
+                  className="social-link"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Mail size={24} />
+                  <span>Email</span>
+                </motion.a>
               </div>
-            </div>
-
-            <div className="contact-item">
-              <div className="contact-icon"><MapPin size={22} /></div>
-              <div className="contact-details">
-                <span>Location</span>
-                <small>Hyderabad, India (Open to Remote)</small>
-              </div>
-            </div>
-
-            <div className="availability-badge">
-              <span className="availability-dot" />
-              <span>Available for hire</span>
-            </div>
-
-            <div className="social-links">
-              <motion.a 
-                href="https://github.com/abhilashmakode" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="social-link"
-                whileHover={{ scale: 1.1, y: -3 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Github size={22} />
-              </motion.a>
-              <motion.a 
-                href="https://linkedin.com/in/abhilashmakode" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="social-link"
-                whileHover={{ scale: 1.1, y: -3 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Linkedin size={22} />
-              </motion.a>
-              <motion.a 
-                href="mailto:abhilash.makode@outlook.com" 
-                className="social-link"
-                whileHover={{ scale: 1.1, y: -3 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Mail size={22} />
-              </motion.a>
             </div>
           </div>
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <div className="glass-card contact-form">
+          <div className="contact-form-card">
+            <h3>Send a Message</h3>
             <form onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
+                  <label>Your Name</label>
                   <input 
                     type="text" 
-                    placeholder="Your Name"
+                    placeholder="John Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                   />
                 </div>
                 <div className="form-group">
+                  <label>Your Email</label>
                   <input 
                     type="email" 
-                    placeholder="Your Email"
+                    placeholder="john@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
@@ -1217,6 +1293,7 @@ function Contact() {
                 </div>
               </div>
               <div className="form-group">
+                <label>I'm interested in</label>
                 <select 
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
@@ -1224,12 +1301,13 @@ function Contact() {
                   <option value="full-time">Full-time Position</option>
                   <option value="contract">Contract Work</option>
                   <option value="freelance">Freelance Project</option>
-                  <option value="consulting">Consulting</option>
+                  <option value="consulting">Cloud Consulting</option>
                 </select>
               </div>
               <div className="form-group">
+                <label>Your Message</label>
                 <textarea 
-                  placeholder="Your Message"
+                  placeholder="Tell me about your project or opportunity..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
@@ -1237,11 +1315,10 @@ function Contact() {
               </div>
               <motion.button 
                 type="submit" 
-                className="btn btn-primary"
+                className="btn btn-primary btn-full"
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                style={{ width: '100%', justifyContent: 'center' }}
               >
                 {isSubmitting ? (
                   <span className="loading-spinner" />
