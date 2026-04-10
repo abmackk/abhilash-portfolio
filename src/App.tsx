@@ -6,7 +6,8 @@ import {
   Terminal, Zap, Briefcase, GraduationCap, Award,
   Phone, MapPin, Send, ChevronDown, Menu, X,
   ExternalLink, Clock, CheckCircle2,
-  Monitor, Database as DbIcon, Lock, Code, Layers, Cpu, GitBranch
+  Monitor, Database as DbIcon, Lock, Code, Layers, Cpu, GitBranch,
+  Download, FileText, FileBadge, Sparkles
 } from 'lucide-react';
 import './App.css';
 
@@ -1007,6 +1008,56 @@ const skillCategories = [
   }
 ];
 
+function Resume() {
+  return (
+    <section id="resume">
+      <AnimatedSection>
+        <div className="resume-section">
+          <div className="resume-glow" />
+          <div className="resume-content">
+            <div className="resume-icon">
+              <FileBadge size={48} />
+            </div>
+            <div className="resume-text">
+              <span className="resume-label">// GET MY RESUME</span>
+              <h2>Ready to Explore My Journey?</h2>
+              <p>
+                Download my comprehensive resume to learn more about my experience, 
+                technical skills, certifications, and achievements in cloud engineering and DevOps.
+              </p>
+            </div>
+            <motion.a
+              href="/Abhilash_Makode_Resume.pdf"
+              download="Abhilash_Makode_Resume.pdf"
+              className="resume-download-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download size={20} />
+              <span>Download Resume</span>
+              <FileText size={18} />
+            </motion.a>
+            <div className="resume-stats">
+              <div className="resume-stat">
+                <Sparkles size={16} />
+                <span>PDF Format</span>
+              </div>
+              <div className="resume-stat">
+                <Clock size={16} />
+                <span>Updated 2026</span>
+              </div>
+              <div className="resume-stat">
+                <Briefcase size={16} />
+                <span>5+ Years Exp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    </section>
+  );
+}
+
 function Certifications() {
   return (
     <section id="certifications">
@@ -1261,6 +1312,7 @@ function App() {
         <Experience />
         <Projects />
         <Skills />
+        <Resume />
         <Certifications />
         <Contact />
       </main>
