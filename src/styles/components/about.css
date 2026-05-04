@@ -1,0 +1,102 @@
+/* About Section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 20px;
+  border: 2px solid var(--neon-cyan);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s ease;
+  box-shadow: 0 0 30px rgba(0, 255, 245, 0.3);
+}
+
+.about-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 50px rgba(0, 255, 245, 0.5);
+}
+
+.image-glow {
+  position: absolute;
+  inset: -10px;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  border-radius: 25px;
+  z-index: 0;
+  opacity: 0.4;
+  filter: blur(30px);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.about-content h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 20px var(--neon-cyan);
+}
+
+.about-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(0, 255, 245, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 245, 0.2);
+  transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+  border-color: var(--neon-cyan);
+  transform: translateX(5px);
+  box-shadow: 0 0 20px rgba(0, 255, 245, 0.2);
+}
+
+.highlight-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 10px;
+  color: #000;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(0, 255, 245, 0.5);
+}
+
+.highlight-text span {
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.highlight-text small {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
