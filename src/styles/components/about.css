@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+.about-image-col {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .about-image-wrapper {
   position: relative;
   display: inline-block;

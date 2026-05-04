@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { AnimatedSection } from '../ui/AnimatedSection';
 import { Cloud, Server, Shield, Database } from 'lucide-react';
 
@@ -14,14 +15,19 @@ export function About() {
 
       <div className="about-grid">
         <AnimatedSection className="about-image-col" delay={0.1}>
-          <div className="about-image-wrapper">
+          <motion.div 
+            className="about-image-wrapper"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          >
             <img 
-              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop" 
+              src="/profile.png" 
               alt="Abhilash Makode" 
               className="about-image"
             />
             <div className="image-glow" />
-          </div>
+          </motion.div>
         </AnimatedSection>
 
         <AnimatedSection className="about-content-col" delay={0.2}>
