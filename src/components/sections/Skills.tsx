@@ -48,7 +48,7 @@ export function Skills() {
           </div>
           <div className="skills-panel-grid">
             {skillCategories[activeCategory].skills.map((skill, i) => (
-              <SkillBadge key={skill} skill={skill} index={i} />
+              <SkillBadge key={skill.name} skill={skill} index={i} />
             ))}
           </div>
         </motion.div>

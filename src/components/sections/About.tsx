@@ -16,13 +16,13 @@ export function About() {
       <div className="about-grid">
         <AnimatedSection className="about-image-col" delay={0.1}>
           <motion.div 
-            className="about-image-wrapper"
+            className="about-image-wrapper floating-image"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           >
             <img 
-              src="/abhilash-portfolio/profile.png" 
+              src={`/abhilash-portfolio/profile.png?v=${Date.now()}`} 
               alt="Abhilash Makode" 
               className="about-image"
             />

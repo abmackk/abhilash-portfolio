@@ -15,6 +15,12 @@
 .about-image-wrapper {
   position: relative;
   display: inline-block;
+  animation: floatBounce 4s ease-in-out infinite;
+}
+
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 .about-image {

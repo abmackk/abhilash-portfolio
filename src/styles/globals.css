@@ -1,27 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --bg-primary: #050510;
-  --bg-secondary: #0a0a1f;
-  --bg-card: rgba(15, 15, 35, 0.6);
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0c0;
+  --bg-primary: #020208;
+  --bg-secondary: #08081a;
+  --bg-card: rgba(10, 10, 25, 0.6);
+  --text-primary: #e0e0f0;
+  --text-secondary: #9090a0;
   
-  --neon-cyan: #00fff5;
-  --neon-purple: #bf00ff;
-  --neon-pink: #ff00aa;
-  --neon-green: #00ff88;
-  --neon-yellow: #ffee00;
-  --neon-orange: #ff6600;
-  --neon-blue: #0088ff;
-  
-  --accent: var(--neon-cyan);
-  --accent-secondary: var(--neon-purple);
-  --accent-tertiary: var(--neon-pink);
-  
-  --glass-bg: rgba(15, 15, 35, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-hover: rgba(0, 255, 245, 0.3);
+  --neon-cyan: #00d4ff;
+  --neon-purple: #9b5cf6;
+  --neon-pink: #e040a0;
+  --neon-green: #00cc70;
+  --neon-yellow: #d4cc00;
+  --neon-orange: #e07000;
+  --neon-blue: #0070e0;
   
   font-family: 'Inter', sans-serif;
 }

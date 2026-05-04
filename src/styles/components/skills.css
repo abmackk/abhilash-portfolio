@@ -145,10 +145,12 @@
   cursor: default;
 }
 
-.skill-badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.skill-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
 }
 
 /* Glass Cards */

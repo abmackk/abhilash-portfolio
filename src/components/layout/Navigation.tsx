@@ -31,6 +31,11 @@ export function Navigation() {
       >
         <a href="#home" className="nav-logo">AM</a>
         
+        <div className="nav-available-badge">
+          <span className="nav-available-dot" />
+          <span>Available</span>
+        </div>
+        
         <div className="nav-links-desktop">
           {navItems.map((item, i) => (
             <motion.a

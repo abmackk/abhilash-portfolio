@@ -24,10 +24,15 @@ export interface Project {
   liveUrl: string;
 }
 
+export interface SkillItem {
+  name: string;
+  icon: React.ReactNode;
+}
+
 export interface SkillCategory {
   icon: React.ReactNode;
   title: string;
-  skills: string[];
+  skills: SkillItem[];
 }
 
 export interface Certification {

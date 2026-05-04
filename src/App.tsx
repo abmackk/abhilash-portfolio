@@ -2,6 +2,7 @@ import { PageLoader } from './components/layout/PageLoader';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { Navigation } from './components/layout/Navigation';
+import { CookieConsent } from './components/layout/CookieConsent';
 import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
 import { Experience } from './components/sections/Experience';
@@ -39,6 +40,7 @@ function App() {
       </main>
       
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
