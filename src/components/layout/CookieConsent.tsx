@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
 
-export function CookieConsent() {
-  const [isVisible, setIsVisible] = useState(false);
+function getInitialConsent(): boolean {
+  return !localStorage.getItem('cookie-consent');
+}
 
-  useEffect(() => {
-    const consent = localStorage.getItem('cookie-consent');
-    if (!consent) {
-      setIsVisible(true);
-    }
-  }, []);
+export function CookieConsent() {
+  const [isVisible, setIsVisible] = useState(getInitialConsent);
 
   const acceptCookies = () => {
     localStorage.setItem('cookie-consent', 'accepted');

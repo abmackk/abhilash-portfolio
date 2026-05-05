@@ -22,7 +22,7 @@ export function About() {
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           >
             <img 
-              src={`/abhilash-portfolio/profile.png?v=${Date.now()}`} 
+              src="/abhilash-portfolio/profile.png" 
               alt="Abhilash Makode" 
               className="about-image"
             />
