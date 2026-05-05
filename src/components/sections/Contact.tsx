@@ -5,7 +5,7 @@ import { AnimatedSection } from '../ui/AnimatedSection';
 const contactMethods = [
   { icon: <Mail size={24} />, label: 'Email', value: 'abhilash.makode@outlook.com', href: 'mailto:abhilash.makode@outlook.com' },
   { icon: <Phone size={24} />, label: 'Phone', value: '+91 8767543039', href: 'tel:+918767543039' },
-  { icon: <MapPin size={24} />, label: 'Location', value: 'Hyderabad, India', href: '#' },
+    { icon: <MapPin size={24} />, label: 'Location', value: 'Nagpur, India', href: '#' },
   { icon: <MessageCircle size={24} />, label: 'WhatsApp', value: '+91 8767543039', href: 'https://wa.me/918767543039' },
 ];
 
