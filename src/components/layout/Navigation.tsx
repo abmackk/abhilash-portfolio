@@ -30,12 +30,7 @@ export function Navigation() {
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         <a href="#home" className="nav-logo">AM</a>
-        
-        <div className="nav-available-badge">
-          <span className="nav-available-dot" />
-          <span>Available</span>
-        </div>
-        
+         
         <div className="nav-links-desktop">
           {navItems.map((item, i) => (
             <motion.a
@@ -49,6 +44,11 @@ export function Navigation() {
               {item.label}
             </motion.a>
           ))}
+        </div>
+         
+        <div className="nav-available-badge">
+          <span className="nav-available-dot" />
+          <span>Available</span>
         </div>
         
         <motion.button 
