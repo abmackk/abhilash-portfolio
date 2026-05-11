@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Section Layout Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: #030014;
+    color: #e0e0e0;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #ffb300;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+  }
+  .layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .layout-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .layout-card h2 {
+    font-size: 1.2rem;
+    color: #ffb300;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .layout-card .desc {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .layout-number {
+    display: inline-block;
+    background: rgba(255,179,0,0.15);
+    color: #ffb300;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ========== Shared ========== */
+  .glass {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+  }
+
+  /* ========== OPTION 1: Hero + Grid ========== */
+  .hero-skill {
+    text-align: center;
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,179,0,0.04);
+    border: 1px solid rgba(255,179,0,0.12);
+    border-radius: 16px;
+  }
+  .hero-skill-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 1rem;
+    background: rgba(255,179,0,0.1);
+    border: 1px solid rgba(255,179,0,0.15);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .hero-skill h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffb300;
+    margin-bottom: 0.3rem;
+  }
+  .hero-skill p {
+    color: #888;
+    font-size: 0.9rem;
+  }
+  .subskill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+  }
+  .subskill-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; padding: 1rem 0.5rem;
+    background: rgba(13,13,18,0.4);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  .subskill-item:hover {
+    border-color: rgba(255,179,0,0.2);
+    transform: translateY(-2px);
+  }
+  .subskill-item .icon { font-size: 1.5rem; }
+  .subskill-item .name { font-size: 0.7rem; color: #aaa; }
+
+  /* ========== OPTION 2: Big Card with Badge Grid ========== */
+  .main-skill-card {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,179,0,0.05);
+    border: 1px solid rgba(255,179,0,0.15);
+    border-radius: 14px;
+  }
+  .main-skill-card .icon {
+    width: 56px; height: 56px;
+    background: rgba(255,179,0,0.1);
+    border: 1px solid rgba(255,179,0,0.15);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  .main-skill-card .info h3 { font-size: 1.4rem; font-weight: 700; color: #ffb300; }
+  .main-skill-card .info p { font-size: 0.8rem; color: #888; }
+  .badge-grid {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .badge-item {
+    display: flex; align-items: center; gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    background: rgba(13,13,18,0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #ccc;
+    transition: all 0.3s ease;
+  }
+  .badge-item:hover {
+    border-color: rgba(255,179,0,0.2);
+    background: rgba(255,179,0,0.04);
+  }
+  .badge-item .icon { font-size: 1rem; width: 18px; text-align: center; }
+
+  /* ========== OPTION 3: Multi-category Column ========== */
+  .cat-stack { display: flex; flex-direction: column; gap: 1rem; }
+  .cat-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .cat-row:hover { border-color: rgba(255,179,0,0.12); }
+  .cat-row .cat-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,179,0,0.08);
+    border: 1px solid rgba(255,179,0,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .cat-row .cat-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffb300;
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .cat-row .cat-skills {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .cat-row .cat-skills .skill {
+    display: flex; align-items: center; gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(13,13,18,0.3);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #aaa;
+  }
+  .cat-row .cat-skills .skill .icon { font-size: 0.85rem; }
+
+  /* ========== OPTION 4: Hub & Spoke Radial ========== */
+  .hub-container {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .hub-center {
+    width: 140px; height: 140px;
+    background: rgba(255,179,0,0.08);
+    border: 2px solid rgba(255,179,0,0.2);
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hub-center .icon { font-size: 2.2rem; margin-bottom: 0.3rem; }
+  .hub-center .label { font-size: 1rem; font-weight: 700; color: #ffb300; }
+  .hub-spokes {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    max-width: 600px;
+  }
+  .hub-spoke {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.3rem; padding: 0.75rem 0.6rem;
+    background: rgba(13,13,18,0.4);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 10px;
+    min-width: 70px;
+  }
+  .hub-spoke .icon { font-size: 1.2rem; }
+  .hub-spoke .label { font-size: 0.65rem; color: #aaa; }
+
+  /* ========== OPTION 5: Sectioned (current like) ========== */
+  .sectioned { display: flex; flex-direction: column; gap: 1.5rem; }
+  .section-group {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .section-group h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffb300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-group .skills {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .section-group .skills .s {
+    display: flex; align-items: center; gap: 0.25rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(13,13,18,0.3);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #aaa;
+  }
+  .section-group .skills .s .icon { font-size: 0.9rem; }
+
+  /* ========== OPTION 6: Tree ========== */
+  .tree { padding-left: 1rem; }
+  .tree-branch {
+    border-left: 2px solid rgba(255,179,0,0.15);
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .tree-branch::before {
+    content: '';
+    position: absolute; left: -2px; top: 1rem;
+    width: 10px; height: 2px;
+    background: rgba(255,179,0,0.3);
+  }
+  .tree-branch .branch-label {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.95rem; font-weight: 600; color: #ffb300;
+    margin-bottom: 0.5rem;
+  }
+  .tree-branch .branch-label .icon { font-size: 1.1rem; }
+  .tree-leaves {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .tree-leaves .leaf {
+    display: flex; align-items: center; gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(13,13,18,0.3);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #aaa;
+  }
+  .tree-leaves .leaf .icon { font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <h1>Skill Section Layout Options</h1>
+  <p class="subtitle">Click "Preview in Browser" on the HTML file, or use npx serve .</p>
+
+  <div class="layout-grid">
+
+    <!-- OPTION 1 -->
+    <div class="layout-card">
+      <div class="layout-number">#1</div>
+      <h2>Hero + Grid</h2>
+      <p class="desc">One big hero skill displayed prominently, with sub-skills in an icon grid below.</p>
+      <div class="hero-skill">
+        <div class="hero-skill-icon">☁️</div>
+        <h3>AWS</h3>
+        <p>Amazon Web Services — Cloud Infrastructure & DevOps</p>
+      </div>
+      <div class="subskill-grid">
+        <div class="subskill-item"><span class="icon">⚡</span><span class="name">EC2</span></div>
+        <div class="subskill-item"><span class="icon">🌐</span><span class="name">VPC</span></div>
+        <div class="subskill-item"><span class="icon">🗄️</span><span class="name">S3</span></div>
+        <div class="subskill-item"><span class="icon">⚙️</span><span class="name">Lambda</span></div>
+        <div class="subskill-item"><span class="icon">📦</span><span class="name">ECS</span></div>
+        <div class="subskill-item"><span class="icon">🛡️</span><span class="name">IAM</span></div>
+        <div class="subskill-item"><span class="icon">🗃️</span><span class="name">RDS</span></div>
+        <div class="subskill-item"><span class="icon">🔀</span><span class="name">Route53</span></div>
+      </div>
+    </div>
+
+    <!-- OPTION 2 -->
+    <div class="layout-card">
+      <div class="layout-number">#2</div>
+      <h2>Big Card + Badge Grid</h2>
+      <p class="desc">Main skill as a large horizontal card with sub-skills as inline icon badges.</p>
+      <div class="main-skill-card">
+        <div class="icon">☁️</div>
+        <div class="info">
+          <h3>AWS</h3>
+          <p>Cloud Infrastructure & DevOps</p>
+        </div>
+      </div>
+      <div class="badge-grid">
+        <span class="badge-item"><span class="icon">⚡</span> EC2</span>
+        <span class="badge-item"><span class="icon">🌐</span> VPC</span>
+        <span class="badge-item"><span class="icon">🗄️</span> S3</span>
+        <span class="badge-item"><span class="icon">⚙️</span> Lambda</span>
+        <span class="badge-item"><span class="icon">📦</span> ECS</span>
+        <span class="badge-item"><span class="icon">🛡️</span> IAM</span>
+        <span class="badge-item"><span class="icon">🗃️</span> RDS</span>
+        <span class="badge-item"><span class="icon">🔀</span> Route53</span>
+        <span class="badge-item"><span class="icon">🔁</span> SQS</span>
+        <span class="badge-item"><span class="icon">🔔</span> SNS</span>
+        <span class="badge-item"><span class="icon">⚡</span> CloudFront</span>
+        <span class="badge-item"><span class="icon">📡</span> CloudWatch</span>
+      </div>
+    </div>
+
+    <!-- OPTION 3 -->
+    <div class="layout-card">
+      <div class="layout-number">#3</div>
+      <h2>Category Row Stripes</h2>
+      <p class="desc">Each category is a horizontal stripe: icon + title + inline skill badges.</p>
+      <div class="cat-stack">
+        <div class="cat-row">
+          <div class="cat-icon">☁️</div>
+          <span class="cat-name">Cloud</span>
+          <div class="cat-skills">
+            <span class="skill"><span class="icon">⚡</span>EC2</span>
+            <span class="skill"><span class="icon">🌐</span>VPC</span>
+            <span class="skill"><span class="icon">🗄️</span>S3</span>
+            <span class="skill"><span class="icon">⚙️</span>Lambda</span>
+            <span class="skill"><span class="icon">📦</span>ECS</span>
+            <span class="skill"><span class="icon">🛡️</span>IAM</span>
+            <span class="skill"><span class="icon">🗃️</span>RDS</span>
+          </div>
+        </div>
+        <div class="cat-row">
+          <div class="cat-icon">⚙️</div>
+          <span class="cat-name">IaC</span>
+          <div class="cat-skills">
+            <span class="skill"><span class="icon">🏗️</span>Terraform</span>
+            <span class="skill"><span class="icon">☁️</span>CloudFormation</span>
+            <span class="skill"><span class="icon">📜</span>Ansible</span>
+            <span class="skill"><span class="icon">🔐</span>Vault</span>
+            <span class="skill"><span class="icon">📦</span>CDK</span>
+          </div>
+        </div>
+        <div class="cat-row">
+          <div class="cat-icon">🔁</div>
+          <span class="cat-name">CI/CD</span>
+          <div class="cat-skills">
+            <span class="skill"><span class="icon">🐙</span>GitHub Actions</span>
+            <span class="skill"><span class="icon">🏗️</span>Jenkins</span>
+            <span class="skill"><span class="icon">📦</span>Docker</span>
+            <span class="skill"><span class="icon">🎯</span>ArgoCD</span>
+            <span class="skill"><span class="icon">⛵</span>Helm</span>
+          </div>
+        </div>
+        <div class="cat-row">
+          <div class="cat-icon">🐳</div>
+          <span class="cat-name">K8s</span>
+          <div class="cat-skills">
+            <span class="skill"><span class="icon">🐳</span>Docker</span>
+            <span class="skill"><span class="icon">☸️</span>Kubernetes</span>
+            <span class="skill"><span class="icon">🔀</span>Istio</span>
+            <span class="skill"><span class="icon">📦</span>Helm</span>
+            <span class="skill"><span class="icon">🗄️</span>Harbor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 4 -->
+    <div class="layout-card">
+      <div class="layout-number">#4</div>
+      <h2>Hub & Spoke</h2>
+      <p class="desc">Main skill as a central circle with sub-skills arranged around it.</p>
+      <div class="hub-container">
+        <div class="hub-center">
+          <span class="icon">☁️</span>
+          <span class="label">AWS</span>
+        </div>
+        <div class="hub-spokes">
+          <div class="hub-spoke"><span class="icon">⚡</span><span class="label">EC2</span></div>
+          <div class="hub-spoke"><span class="icon">🌐</span><span class="label">VPC</span></div>
+          <div class="hub-spoke"><span class="icon">🗄️</span><span class="label">S3</span></div>
+          <div class="hub-spoke"><span class="icon">⚙️</span><span class="label">Lambda</span></div>
+          <div class="hub-spoke"><span class="icon">📦</span><span class="label">ECS</span></div>
+          <div class="hub-spoke"><span class="icon">🛡️</span><span class="label">IAM</span></div>
+          <div class="hub-spoke"><span class="icon">🗃️</span><span class="label">RDS</span></div>
+          <div class="hub-spoke"><span class="icon">🔀</span><span class="label">Route53</span></div>
+          <div class="hub-spoke"><span class="icon">🔁</span><span class="label">SQS</span></div>
+          <div class="hub-spoke"><span class="icon">🔔</span><span class="label">SNS</span></div>
+          <div class="hub-spoke"><span class="icon">⚡</span><span class="label">CloudFront</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 5 -->
+    <div class="layout-card">
+      <div class="layout-number">#5</div>
+      <h2>Sectioned Groups (Current)</h2>
+      <p class="desc">All categories stacked vertically, each with a section header and inline icon badges.</p>
+      <div class="sectioned">
+        <div class="section-group">
+          <h3>☁️ Cloud Platforms</h3>
+          <div class="skills">
+            <span class="s"><span class="icon">⚡</span>EC2</span>
+            <span class="s"><span class="icon">🌐</span>VPC</span>
+            <span class="s"><span class="icon">🗄️</span>S3</span>
+            <span class="s"><span class="icon">⚙️</span>Lambda</span>
+            <span class="s"><span class="icon">📦</span>ECS</span>
+            <span class="s"><span class="icon">🛡️</span>IAM</span>
+            <span class="s"><span class="icon">🗃️</span>RDS</span>
+          </div>
+        </div>
+        <div class="section-group">
+          <h3>⚙️ Infrastructure as Code</h3>
+          <div class="skills">
+            <span class="s"><span class="icon">🏗️</span>Terraform</span>
+            <span class="s"><span class="icon">☁️</span>CloudFormation</span>
+            <span class="s"><span class="icon">📜</span>Ansible</span>
+            <span class="s"><span class="icon">🔐</span>Vault</span>
+            <span class="s"><span class="icon">📦</span>CDK</span>
+          </div>
+        </div>
+        <div class="section-group">
+          <h3>🔁 CI/CD & DevOps</h3>
+          <div class="skills">
+            <span class="s"><span class="icon">🐙</span>GitHub Actions</span>
+            <span class="s"><span class="icon">🏗️</span>Jenkins</span>
+            <span class="s"><span class="icon">📦</span>Docker</span>
+            <span class="s"><span class="icon">🎯</span>ArgoCD</span>
+            <span class="s"><span class="icon">⛵</span>Helm</span>
+          </div>
+        </div>
+        <div class="section-group">
+          <h3>🐳 Containers & K8s</h3>
+          <div class="skills">
+            <span class="s"><span class="icon">🐳</span>Docker</span>
+            <span class="s"><span class="icon">☸️</span>Kubernetes</span>
+            <span class="s"><span class="icon">🔀</span>Istio</span>
+            <span class="s"><span class="icon">📦</span>Helm</span>
+            <span class="s"><span class="icon">🗄️</span>Harbor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 6 -->
+    <div class="layout-card">
+      <div class="layout-number">#6</div>
+      <h2>Tree View</h2>
+      <p class="desc">Hierarchical tree with main skills as branches and sub-skills as leaves.</p>
+      <div class="tree">
+        <div class="tree-branch">
+          <div class="branch-label"><span class="icon">☁️</span> Cloud Platforms</div>
+          <div class="tree-leaves">
+            <span class="leaf"><span class="icon">⚡</span>EC2</span>
+            <span class="leaf"><span class="icon">🌐</span>VPC</span>
+            <span class="leaf"><span class="icon">🗄️</span>S3</span>
+            <span class="leaf"><span class="icon">⚙️</span>Lambda</span>
+            <span class="leaf"><span class="icon">📦</span>ECS</span>
+            <span class="leaf"><span class="icon">🛡️</span>IAM</span>
+          </div>
+        </div>
+        <div class="tree-branch">
+          <div class="branch-label"><span class="icon">⚙️</span> Infrastructure as Code</div>
+          <div class="tree-leaves">
+            <span class="leaf"><span class="icon">🏗️</span>Terraform</span>
+            <span class="leaf"><span class="icon">☁️</span>CloudFormation</span>
+            <span class="leaf"><span class="icon">📜</span>Ansible</span>
+            <span class="leaf"><span class="icon">🔐</span>Vault</span>
+          </div>
+        </div>
+        <div class="tree-branch">
+          <div class="branch-label"><span class="icon">🔁</span> CI/CD & DevOps</div>
+          <div class="tree-leaves">
+            <span class="leaf"><span class="icon">🐙</span>GitHub Actions</span>
+            <span class="leaf"><span class="icon">🏗️</span>Jenkins</span>
+            <span class="leaf"><span class="icon">📦</span>Docker</span>
+            <span class="leaf"><span class="icon">🎯</span>ArgoCD</span>
+          </div>
+        </div>
+        <div class="tree-branch">
+          <div class="branch-label"><span class="icon">🐳</span> Containers & K8s</div>
+          <div class="tree-leaves">
+            <span class="leaf"><span class="icon">☸️</span>Kubernetes</span>
+            <span class="leaf"><span class="icon">🔀</span>Istio</span>
+            <span class="leaf"><span class="icon">⛵</span>Helm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

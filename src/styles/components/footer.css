@@ -1,8 +1,7 @@
-/* Footer */
 footer {
-  padding: 4rem 2rem 2rem;
+  padding: 3rem 2rem 1.5rem;
   border-top: 1px solid var(--glass-border);
-  background: rgba(5, 5, 16, 0.8);
+  background: rgba(13, 13, 18, 0.85);
 }
 
 .footer-content {
@@ -12,73 +11,68 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-brand .nav-logo {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .footer-brand p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .footer-links a {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
   color: var(--neon-cyan);
-  text-shadow: 0 0 20px var(--neon-cyan);
 }
 
 .footer-social {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .footer-social a {
-  color: var(--neon-cyan);
-  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-social a:hover {
-  filter: drop-shadow(0 0 15px var(--neon-cyan));
-  transform: translateY(-3px);
+  color: var(--neon-cyan);
+  transform: translateY(-2px);
 }
 
 .footer-bottom {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--glass-border);
 }
 
 .footer-bottom p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: neonGradient 3s ease infinite;
+  color: var(--neon-cyan);
 }
 
-/* Sections */
 section {
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -86,30 +80,28 @@ section {
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .section-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--neon-cyan);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px var(--neon-cyan);
 }
 
 .section-title {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(90deg, var(--text-primary), var(--neon-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
 }
 
 .section-desc {
   color: var(--text-secondary);
-  max-width: 600px;
+  max-width: 550px;
   margin: 0 auto;
+  font-size: 0.95rem;
 }

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowRight, CheckCircle2, MessageCircle } from 'lucide-react';
 import { AnimatedSection } from '../ui/AnimatedSection';
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdabplad';
+
 const contactMethods = [
   { icon: <Mail size={24} />, label: 'Email', value: 'abhilash.makode@outlook.com', href: 'mailto:abhilash.makode@outlook.com' },
   { icon: <Phone size={24} />, label: 'Phone', value: '+91 8767543039', href: 'tel:+918767543039' },
@@ -13,18 +15,31 @@ export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '', service: 'full-time' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    setError('');
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error('Failed to send message');
+    } catch {
+      setError('Could not send message. Please email me directly.');
+      setIsSubmitting(false);
+      return;
+    }
+
     setIsSubmitting(false);
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '', service: 'full-time' });
-    
-    setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
@@ -74,26 +89,26 @@ export function Contact() {
             <div className="contact-socials">
               <h4>Connect With Me</h4>
               <div className="social-links large">
-                <a 
-                  href="https://github.com/abhilashmakode" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://github.com/abhilashmakode"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="social-link"
                 >
                   <Github size={24} />
                   <span>GitHub</span>
                 </a>
-                <a 
-                  href="https://linkedin.com/in/abhilashmakode" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://linkedin.com/in/abhilashmakode"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="social-link"
                 >
                   <Linkedin size={24} />
                   <span>LinkedIn</span>
                 </a>
-                <a 
-                  href="mailto:abhilash.makode@outlook.com" 
+                <a
+                  href="mailto:abhilash.makode@outlook.com"
                   className="social-link"
                 >
                   <Mail size={24} />
@@ -111,8 +126,8 @@ export function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Your Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="John Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -121,8 +136,8 @@ export function Contact() {
                 </div>
                 <div className="form-group">
                   <label>Your Email</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     placeholder="john@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -132,7 +147,7 @@ export function Contact() {
               </div>
               <div className="form-group">
                 <label>I'm interested in</label>
-                <select 
+                <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 >
@@ -144,15 +159,16 @@ export function Contact() {
               </div>
               <div className="form-group">
                 <label>Your Message</label>
-                <textarea 
+                <textarea
                   placeholder="Tell me about your project or opportunity..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                 />
               </div>
-              <button 
-                type="submit" 
+              {error && <div className="form-error">{error}</div>}
+              <button
+                type="submit"
                 className="btn btn-primary btn-full"
                 disabled={isSubmitting}
               >

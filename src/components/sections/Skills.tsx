@@ -1,12 +1,26 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 import { AnimatedSection } from '../ui/AnimatedSection';
-import { TechMarquee } from '../ui/TechMarquee';
-import { SkillBadge } from '../ui/SkillBadge';
 import { skillCategories } from '../../data/skillCategories';
 
+const RESUME_SKILLS = new Set([
+  'AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins',
+  'GitHub Actions', 'Linux', 'Python', 'Go', 'TypeScript', 'PostgreSQL',
+  'MongoDB', 'Redis', 'Prometheus', 'Grafana', 'Ansible', 'Helm', 'CloudWatch',
+  'EC2', 'VPC', 'S3', 'RDS', 'IAM', 'Lambda', 'WAF', 'Route53',
+  'Elasticsearch', 'Vault', 'Aurora', 'ECS', 'EKS', 'CloudFormation',
+  'Datadog', 'GuardDuty', 'Security Hub', 'SOC 2', 'ISO 27001',
+  'ACM', 'KMS', 'Shield', 'PgBouncer', 'Bash', 'GitLab CI',
+]);
+
 export function Skills() {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const categories = useMemo(() =>
+    skillCategories
+      .map(cat => ({
+        ...cat,
+        skills: cat.skills.filter(s => RESUME_SKILLS.has(s.name)),
+      }))
+      .filter(cat => cat.skills.length > 0),
+  []);
 
   return (
     <section id="skills">
@@ -18,40 +32,25 @@ export function Skills() {
         </div>
       </AnimatedSection>
 
-      <TechMarquee />
-
       <AnimatedSection>
-        <div className="skills-tabs">
-          {skillCategories.map((cat, idx) => (
-            <motion.button
-              key={idx}
-              className={`skill-tab ${activeCategory === idx ? 'active' : ''}`}
-              onClick={() => setActiveCategory(idx)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="skill-tab-icon">{cat.icon}</span>
-              <span className="skill-tab-title">{cat.title}</span>
-            </motion.button>
+        <div className="skill-rows">
+          {categories.map((category, idx) => (
+            <div key={idx} className="skill-row">
+              <div className="skill-row-left">
+                <span className="skill-row-icon">{category.icon}</span>
+                <span className="skill-row-title">{category.title}</span>
+              </div>
+              <div className="skill-row-badges">
+                {category.skills.map((skill) => (
+                  <span key={skill.name} className="skill-row-badge">
+                    <span className="skill-row-badge-icon">{skill.icon}</span>
+                    <span>{skill.name}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-
-        <motion.div
-          className="skills-panel"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="skills-panel-header">
-            <span className="skill-tab-icon large">{skillCategories[activeCategory].icon}</span>
-            <h3>{skillCategories[activeCategory].title}</h3>
-          </div>
-          <div className="skills-panel-grid">
-            {skillCategories[activeCategory].skills.map((skill, i) => (
-              <SkillBadge key={skill.name} skill={skill} index={i} />
-            ))}
-          </div>
-        </motion.div>
       </AnimatedSection>
     </section>
   );

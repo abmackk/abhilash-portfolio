@@ -1,37 +1,10 @@
-.nav-available-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid rgba(0, 212, 255, 0.4);
-  border-radius: 50px;
-  color: var(--neon-cyan);
-  font-size: 0.8rem;
-  font-weight: 500;
-  animation: navGlow 2s ease-in-out infinite;
-}
-
-.nav-available-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--neon-cyan);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-  box-shadow: 0 0 10px var(--neon-cyan);
-}
-
-@keyframes navGlow {
-  0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(0, 212, 255, 0.2); }
-}
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.2rem 2rem;
-  background: rgba(5, 5, 16, 0.8);
+  padding: 1rem 2rem;
+  background: rgba(13, 13, 18, 0.85);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid transparent;
   z-index: 1000;
@@ -42,28 +15,21 @@
 }
 
 .navbar.scrolled {
-  background: rgba(5, 5, 16, 0.95);
+  background: rgba(13, 13, 18, 0.95);
   border-bottom: 1px solid var(--glass-border);
-  box-shadow: 0 5px 30px rgba(0, 255, 245, 0.1);
-  padding: 1rem 2rem;
 }
 
 .nav-logo {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: neonGradient 3s ease infinite;
+  color: var(--neon-cyan);
   text-decoration: none;
-  filter: drop-shadow(0 0 10px var(--neon-cyan));
 }
 
 .nav-links-desktop {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -72,50 +38,63 @@
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.nav-links-desktop a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px var(--neon-cyan);
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
 }
 
 .nav-links-desktop a:hover {
   color: var(--neon-cyan);
-  text-shadow: 0 0 20px var(--neon-cyan);
 }
 
-.nav-links-desktop a:hover::after {
-  width: 100%;
+.nav-links-desktop a.nav-link-active {
+  color: var(--neon-cyan);
+  position: relative;
+}
+
+.nav-links-desktop a.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--neon-cyan);
+  border-radius: 1px;
+}
+
+.nav-available-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid rgba(255, 179, 0, 0.2);
+  border-radius: 6px;
+  color: var(--neon-cyan);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.nav-available-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--neon-green);
+  border-radius: 50%;
 }
 
 .mobile-menu-btn {
   display: none;
   background: none;
   border: none;
-  color: var(--neon-cyan);
+  color: var(--text-primary);
   cursor: pointer;
   padding: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.mobile-menu-btn:hover {
-  filter: drop-shadow(0 0 10px var(--neon-cyan));
 }
 
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(5, 5, 16, 0.98);
+  background: rgba(13, 13, 18, 0.98);
   backdrop-filter: blur(20px);
   z-index: 999;
   display: flex;
@@ -136,10 +115,9 @@
   font-weight: 600;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .mobile-menu-content a:hover {
   color: var(--neon-cyan);
-  text-shadow: 0 0 30px var(--neon-cyan);
 }

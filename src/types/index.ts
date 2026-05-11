@@ -1,12 +1,3 @@
-export interface Particle {
-  x: number;
-  y: number;
-  size: number;
-  speedX: number;
-  speedY: number;
-  opacity: number;
-}
-
 export interface Experience {
   title: string;
   company: string;
@@ -22,6 +13,7 @@ export interface Project {
   highlights: string[];
   tech: string[];
   liveUrl: string;
+  color: string;
 }
 
 export interface SkillItem {
@@ -41,11 +33,20 @@ export interface Certification {
   year: string;
 }
 
-export interface ContactMethod {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  href: string;
+export interface Article {
+  title: string;
+  description: string;
+  url: string;
+  platform: string;
+  date: string;
+  tags: string[];
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+  avatar: string;
 }
 
 export interface ResumeData {
@@ -74,11 +75,6 @@ export interface StatProps {
   value: number;
   suffix: string;
   label: string;
-}
-
-export interface SkillBadgeProps {
-  skill: string;
-  index: number;
 }
 
 export interface SectionProps {

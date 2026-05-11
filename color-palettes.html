@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Palette Previews</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a14;
+      color: #e0e0f0;
+      padding: 3rem 2rem;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #00d4ff, #9b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      text-align: center;
+      color: #9090a0;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .palettes {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .palette {
+      background: var(--bg);
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .palette::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 30%, var(--grad-1), transparent),
+        radial-gradient(ellipse 50% 35% at 80% 20%, var(--grad-2), transparent),
+        radial-gradient(ellipse 40% 30% at 50% 80%, var(--grad-3), transparent);
+      pointer-events: none;
+    }
+
+    .palette-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      text-shadow: 0 0 20px var(--primary);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .palette-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .palette-desc {
+      color: #9090a0;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .swatch-color {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .demo-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .demo-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 30px var(--glow);
+      transform: translateY(-3px);
+    }
+
+    .demo-card h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .demo-card p {
+      font-size: 0.85rem;
+      color: #9090a0;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .demo-card .tag {
+      display: inline-block;
+      padding: 0.3rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      border: none;
+      cursor: default;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--tertiary));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: #9090a0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 700px) {
+      .demo-grid { grid-template-columns: 1fr; }
+      body { padding: 1.5rem; }
+      .palette { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Color Palette Previews</h1>
+<p class="subtitle">4 alternative color schemes for the abhilash-portfolio website</p>
+
+<div class="palettes">
+
+  <!-- Palette 1 -->
+  <div class="palette" style="--bg: #0a0015; --primary: #ff2d78; --secondary: #b44cff; --tertiary: #ffd700; --grad-1: rgba(255,45,120,0.12); --grad-2: rgba(180,76,255,0.1); --grad-3: rgba(255,215,0,0.06); --card-bg: rgba(20,0,35,0.6); --card-border: rgba(255,45,120,0.2); --glow: rgba(255,45,120,0.4); --badge-bg: rgba(255,45,120,0.08); --badge-border: rgba(255,45,120,0.4);">
+    <div class="palette-number">OPTION 01</div>
+    <div class="palette-name gradient-text">Synthwave Sunset</div>
+    <div class="palette-desc">Retro 80s synthwave — warm, intense, electric. Hot pink and purple with gold highlights.</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#ff2d78"></div>#ff2d78</div>
+      <div class="swatch"><div class="swatch-color" style="background:#b44cff"></div>#b44cff</div>
+      <div class="swatch"><div class="swatch-color" style="background:#ff6b35"></div>#ff6b35</div>
+      <div class="swatch"><div class="swatch-color" style="background:#ffd700"></div>#ffd700</div>
+      <div class="swatch"><div class="swatch-color" style="background:#0a0015"></div>#0a0015 BG</div>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="badge"><span class="badge-dot"></span>Available for Projects</div>
+        <h4 style="font-size:1.5rem; -webkit-text-fill-color:initial; color:#fff;">Hi, I'm <span class="gradient-text">Abhilash</span></h4>
+        <p>AWS Cloud Engineer & DevOps Specialist with 5+ years of experience designing scalable cloud architectures.</p>
+        <div class="btn-row">
+          <span class="btn btn-primary">View Projects</span>
+          <span class="btn btn-outline">Hire Me</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <h4>Technical Skills</h4>
+        <p style="margin-bottom:0.75rem;">AWS · Docker · Kubernetes · Terraform · Jenkins · TypeScript</p>
+        <div>
+          <span class="tag" style="background:rgba(255,45,120,0.15);border:1px solid rgba(255,45,120,0.4);color:#ff2d78;box-shadow:0 0 10px rgba(255,45,120,0.2);">AWS</span>
+          <span class="tag" style="background:rgba(180,76,255,0.15);border:1px solid rgba(180,76,255,0.4);color:#b44cff;box-shadow:0 0 10px rgba(180,76,255,0.2);">Docker</span>
+          <span class="tag" style="background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.4);color:#ff6b35;box-shadow:0 0 10px rgba(255,107,53,0.2);">K8s</span>
+          <span class="tag" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.4);color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,0.2);">Terraform</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-value">5+</div><div class="stat-label">Years Exp</div></div>
+          <div class="stat"><div class="stat-value">30+</div><div class="stat-label">EC2 Instances</div></div>
+          <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Projects</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 2 -->
+  <div class="palette" style="--bg: #000a00; --primary: #00ff41; --secondary: #00b4d8; --tertiary: #88ff00; --grad-1: rgba(0,255,65,0.1); --grad-2: rgba(0,180,216,0.08); --grad-3: rgba(136,255,0,0.05); --card-bg: rgba(0,20,0,0.6); --card-border: rgba(0,255,65,0.2); --glow: rgba(0,255,65,0.4); --badge-bg: rgba(0,255,65,0.08); --badge-border: rgba(0,255,65,0.4);">
+    <div class="palette-number">OPTION 02</div>
+    <div class="palette-name gradient-text">Matrix Green</div>
+    <div class="palette-desc">Minimal hacker-aesthetic — monochromatic green with teal accents. Clean, sharp, cyberpunk.</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#00ff41"></div>#00ff41</div>
+      <div class="swatch"><div class="swatch-color" style="background:#00b4d8"></div>#00b4d8</div>
+      <div class="swatch"><div class="swatch-color" style="background:#00cc88"></div>#00cc88</div>
+      <div class="swatch"><div class="swatch-color" style="background:#88ff00"></div>#88ff00</div>
+      <div class="swatch"><div class="swatch-color" style="background:#000a00"></div>#000a00 BG</div>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="badge"><span class="badge-dot"></span>Available for Projects</div>
+        <h4 style="font-size:1.5rem; -webkit-text-fill-color:initial; color:#fff;">Hi, I'm <span class="gradient-text">Abhilash</span></h4>
+        <p>AWS Cloud Engineer & DevOps Specialist with 5+ years of experience designing scalable cloud architectures.</p>
+        <div class="btn-row">
+          <span class="btn btn-primary">View Projects</span>
+          <span class="btn btn-outline">Hire Me</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <h4>Technical Skills</h4>
+        <p style="margin-bottom:0.75rem;">AWS · Docker · Kubernetes · Terraform · Jenkins · TypeScript</p>
+        <div>
+          <span class="tag" style="background:rgba(0,255,65,0.15);border:1px solid rgba(0,255,65,0.4);color:#00ff41;box-shadow:0 0 10px rgba(0,255,65,0.2);">AWS</span>
+          <span class="tag" style="background:rgba(0,180,216,0.15);border:1px solid rgba(0,180,216,0.4);color:#00b4d8;box-shadow:0 0 10px rgba(0,180,216,0.2);">Docker</span>
+          <span class="tag" style="background:rgba(0,204,136,0.15);border:1px solid rgba(0,204,136,0.4);color:#00cc88;box-shadow:0 0 10px rgba(0,204,136,0.2);">K8s</span>
+          <span class="tag" style="background:rgba(136,255,0,0.15);border:1px solid rgba(136,255,0,0.4);color:#88ff00;box-shadow:0 0 10px rgba(136,255,0,0.2);">Terraform</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-value">5+</div><div class="stat-label">Years Exp</div></div>
+          <div class="stat"><div class="stat-value">30+</div><div class="stat-label">EC2 Instances</div></div>
+          <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Projects</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 3 -->
+  <div class="palette" style="--bg: #001220; --primary: #00e5ff; --secondary: #536dfe; --tertiary: #1de9b6; --grad-1: rgba(0,229,255,0.1); --grad-2: rgba(83,109,254,0.08); --grad-3: rgba(29,233,182,0.05); --card-bg: rgba(0,25,50,0.6); --card-border: rgba(0,229,255,0.2); --glow: rgba(0,229,255,0.4); --badge-bg: rgba(0,229,255,0.08); --badge-border: rgba(0,229,255,0.4);">
+    <div class="palette-number">OPTION 03</div>
+    <div class="palette-name gradient-text">Ocean Depths</div>
+    <div class="palette-desc">Cool, professional, calming blue-teal tones. Corporate-friendly but modern.</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#00e5ff"></div>#00e5ff</div>
+      <div class="swatch"><div class="swatch-color" style="background:#2979ff"></div>#2979ff</div>
+      <div class="swatch"><div class="swatch-color" style="background:#536dfe"></div>#536dfe</div>
+      <div class="swatch"><div class="swatch-color" style="background:#1de9b6"></div>#1de9b6</div>
+      <div class="swatch"><div class="swatch-color" style="background:#001220"></div>#001220 BG</div>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="badge"><span class="badge-dot"></span>Available for Projects</div>
+        <h4 style="font-size:1.5rem; -webkit-text-fill-color:initial; color:#fff;">Hi, I'm <span class="gradient-text">Abhilash</span></h4>
+        <p>AWS Cloud Engineer & DevOps Specialist with 5+ years of experience designing scalable cloud architectures.</p>
+        <div class="btn-row">
+          <span class="btn btn-primary">View Projects</span>
+          <span class="btn btn-outline">Hire Me</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <h4>Technical Skills</h4>
+        <p style="margin-bottom:0.75rem;">AWS · Docker · Kubernetes · Terraform · Jenkins · TypeScript</p>
+        <div>
+          <span class="tag" style="background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.4);color:#00e5ff;box-shadow:0 0 10px rgba(0,229,255,0.2);">AWS</span>
+          <span class="tag" style="background:rgba(41,121,255,0.15);border:1px solid rgba(41,121,255,0.4);color:#2979ff;box-shadow:0 0 10px rgba(41,121,255,0.2);">Docker</span>
+          <span class="tag" style="background:rgba(83,109,254,0.15);border:1px solid rgba(83,109,254,0.4);color:#536dfe;box-shadow:0 0 10px rgba(83,109,254,0.2);">K8s</span>
+          <span class="tag" style="background:rgba(29,233,182,0.15);border:1px solid rgba(29,233,182,0.4);color:#1de9b6;box-shadow:0 0 10px rgba(29,233,182,0.2);">Terraform</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-value">5+</div><div class="stat-label">Years Exp</div></div>
+          <div class="stat"><div class="stat-value">30+</div><div class="stat-label">EC2 Instances</div></div>
+          <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Projects</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Palette 4 -->
+  <div class="palette" style="--bg: #0d0d12; --primary: #ffb300; --secondary: #ff5252; --tertiary: #7c4dff; --grad-1: rgba(255,179,0,0.1); --grad-2: rgba(255,82,82,0.08); --grad-3: rgba(124,77,255,0.05); --card-bg: rgba(18,18,25,0.6); --card-border: rgba(255,179,0,0.2); --glow: rgba(255,179,0,0.4); --badge-bg: rgba(255,179,0,0.08); --badge-border: rgba(255,179,0,0.4);">
+    <div class="palette-number">OPTION 04</div>
+    <div class="palette-name gradient-text">Midnight Ember</div>
+    <div class="palette-desc">Dark academia meets fire — moody, elegant, warm. Amber and rust with deep purple.</div>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#ffb300"></div>#ffb300</div>
+      <div class="swatch"><div class="swatch-color" style="background:#ff5252"></div>#ff5252</div>
+      <div class="swatch"><div class="swatch-color" style="background:#7c4dff"></div>#7c4dff</div>
+      <div class="swatch"><div class="swatch-color" style="background:#ff6d00"></div>#ff6d00</div>
+      <div class="swatch"><div class="swatch-color" style="background:#0d0d12"></div>#0d0d12 BG</div>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="badge"><span class="badge-dot"></span>Available for Projects</div>
+        <h4 style="font-size:1.5rem; -webkit-text-fill-color:initial; color:#fff;">Hi, I'm <span class="gradient-text">Abhilash</span></h4>
+        <p>AWS Cloud Engineer & DevOps Specialist with 5+ years of experience designing scalable cloud architectures.</p>
+        <div class="btn-row">
+          <span class="btn btn-primary">View Projects</span>
+          <span class="btn btn-outline">Hire Me</span>
+        </div>
+      </div>
+      <div class="demo-card">
+        <h4>Technical Skills</h4>
+        <p style="margin-bottom:0.75rem;">AWS · Docker · Kubernetes · Terraform · Jenkins · TypeScript</p>
+        <div>
+          <span class="tag" style="background:rgba(255,179,0,0.15);border:1px solid rgba(255,179,0,0.4);color:#ffb300;box-shadow:0 0 10px rgba(255,179,0,0.2);">AWS</span>
+          <span class="tag" style="background:rgba(255,82,82,0.15);border:1px solid rgba(255,82,82,0.4);color:#ff5252;box-shadow:0 0 10px rgba(255,82,82,0.2);">Docker</span>
+          <span class="tag" style="background:rgba(124,77,255,0.15);border:1px solid rgba(124,77,255,0.4);color:#7c4dff;box-shadow:0 0 10px rgba(124,77,255,0.2);">K8s</span>
+          <span class="tag" style="background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.4);color:#ff6d00;box-shadow:0 0 10px rgba(255,109,0,0.2);">Terraform</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-value">5+</div><div class="stat-label">Years Exp</div></div>
+          <div class="stat"><div class="stat-value">30+</div><div class="stat-label">EC2 Instances</div></div>
+          <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Projects</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;color:#606070;margin-top:3rem;font-size:0.85rem;">Open this file in a browser to see the full previews.</p>
+
+</body>
+</html>

@@ -134,6 +134,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Bash', icon: <Terminal size={16} /> },
       { name: 'Python', icon: <PythonIcon /> },
       { name: 'Go', icon: <GoIcon /> },
+      { name: 'Linux', icon: <Terminal size={16} /> },
       { name: 'TypeScript', icon: <Braces size={16} /> },
       { name: 'JavaScript', icon: <Code size={16} /> },
       { name: 'YAML', icon: <Code size={16} /> },

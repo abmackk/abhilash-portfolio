@@ -7,6 +7,7 @@ const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'EXPERIENCE', href: '#experience' },
   { label: 'PROJECTS', href: '#projects' },
+  { label: 'BLOG', href: '#blog' },
   { label: 'SKILLS', href: '#skills' },
   { label: 'CONTACT', href: '#contact' },
 ];
@@ -14,28 +15,55 @@ const navItems = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
+  const [activeSection, setActiveSection] = useState('home');
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const sectionIds = navItems.map(item => item.href.slice(1));
+
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
   return (
     <>
-      <motion.nav 
+      <motion.nav
         className={`navbar ${scrolled ? 'scrolled' : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         <a href="#home" className="nav-logo">AM</a>
-         
+
         <div className="nav-links-desktop">
           {navItems.map((item, i) => (
             <motion.a
               key={item.label}
               href={item.href}
+              className={activeSection === item.href.slice(1) ? 'nav-link-active' : ''}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + i * 0.05 }}
@@ -45,13 +73,13 @@ export function Navigation() {
             </motion.a>
           ))}
         </div>
-         
+
         <div className="nav-available-badge">
           <span className="nav-available-dot" />
           <span>Available</span>
         </div>
-        
-        <motion.button 
+
+        <motion.button
           className="mobile-menu-btn"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.95 }}
@@ -61,7 +89,7 @@ export function Navigation() {
       </motion.nav>
 
       {isOpen && (
-        <motion.div 
+        <motion.div
           className="mobile-menu"
           initial={{ opacity: 0, x: '100%' }}
           animate={{ opacity: 1, x: 0 }}

@@ -1,36 +1,20 @@
-import { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, Mail, ChevronDown } from 'lucide-react';
 
-import { useTextScramble } from '../../hooks/useTextScramble';
 import { useTypewriter } from '../../hooks/useTypewriter';
 import { roles } from '../../data/roles';
-import { MagneticButton } from '../ui/MagneticButton';
 import { StatCounter } from '../ui/StatCounter';
-import { ParticleCanvas } from '../ui/ParticleCanvas';
+
+const scrollToNext = () => {
+  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+};
 
 export function Hero() {
-  const scrambledName = useTextScramble('Abhilash Makode', 500);
   const typedRole = useTypewriter(roles);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const y = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  const scrollToNext = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
-    <section className="hero" id="home" ref={heroRef}>
-      <ParticleCanvas />
-      
-      <motion.div
-        className="hero-content"
-        style={{ y: y ? `translateY(${y.get() * 100}px)` : undefined }}
-      >
+    <section className="hero" id="home">
+      <div className="hero-content">
         <motion.div
           className="hero-badge"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -39,7 +23,6 @@ export function Hero() {
         >
           <span className="badge-dot" />
           <span>Available for Projects</span>
-          <span className="badge-pulse" />
         </motion.div>
 
         <motion.h1
@@ -49,7 +32,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           Hi, I'm{' '}
-          <span className="gradient name-text">{scrambledName}</span>
+          <span className="gradient-text name-text">Abhilash Makode</span>
         </motion.h1>
 
         <motion.div
@@ -69,7 +52,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          AWS Cloud Engineer & DevOps Specialist with 5+ years of experience{' '}
+          AWS Cloud Engineer & DevOps Specialist with 5+ years of experience
           designing scalable, secure, and high-performance infrastructure architectures.
         </motion.p>
 
@@ -79,18 +62,14 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
         >
-          <MagneticButton>
-            <a href="#projects" className="btn btn-primary">
-              <span>View Projects</span>
-              <ArrowRight size={18} />
-            </a>
-          </MagneticButton>
-          <MagneticButton>
-            <a href="#contact" className="btn btn-outline">
-              <Mail size={18} />
-              <span>Hire Me</span>
-            </a>
-          </MagneticButton>
+          <a href="#projects" className="btn btn-primary">
+            <span>View Projects</span>
+            <ArrowRight size={18} />
+          </a>
+          <a href="#contact" className="btn btn-outline">
+            <Mail size={18} />
+            <span>Hire Me</span>
+          </a>
         </motion.div>
 
         <motion.div
@@ -120,7 +99,7 @@ export function Hero() {
             <ChevronDown size={24} />
           </motion.div>
         </motion.button>
-      </motion.div>
+      </div>
     </section>
   );
 }

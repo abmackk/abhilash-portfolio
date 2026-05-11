@@ -1,7 +1,6 @@
-/* Timeline */
 .timeline {
   position: relative;
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 
 .timeline::before {
@@ -11,68 +10,64 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink), var(--neon-green));
-  box-shadow: 0 0 20px var(--neon-cyan);
+  background: var(--neon-cyan);
 }
 
 .timeline-item {
   position: relative;
-  padding: 2rem;
+  padding: 1.5rem;
   background: var(--glass-bg);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease;
 }
 
 .timeline-item:hover {
-  border-color: var(--neon-cyan);
-  transform: translateX(10px);
-  box-shadow: 0 0 30px rgba(0, 255, 245, 0.2);
+  border-color: rgba(255, 179, 0, 0.25);
 }
 
 .timeline-marker {
   position: absolute;
-  left: -3rem;
-  top: 2rem;
-  width: 16px;
-  height: 16px;
-  background: var(--bg-primary);
-  border: 3px solid var(--neon-cyan);
+  left: -2rem;
+  top: 1.5rem;
+  width: 12px;
+  height: 12px;
+  background: var(--neon-cyan);
+  border: 2px solid var(--bg-primary);
   border-radius: 50%;
-  box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-  animation: markerPulse 2s ease-in-out infinite;
 }
 
 .timeline-date {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--neon-cyan);
   margin-bottom: 0.5rem;
 }
 
 .timeline-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .timeline-company {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: var(--neon-purple);
   font-weight: 500;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px var(--neon-purple);
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .timeline-desc {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }

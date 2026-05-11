@@ -6,6 +6,7 @@ export const projects: Project[] = [
     icon: <Zap size={28} />,
     title: 'AI Powered CRM Tool',
     tagline: 'AI-powered tools to get more customers & give them a better experience',
+    color: '#ffb300',
     highlights: [
       'Architected comprehensive infrastructure from ground up - design, implementation, and optimization',
       'Built VPC with public/private subnets, NAT, Network ACL, Security Groups, and Internet Gateway',
@@ -21,6 +22,7 @@ export const projects: Project[] = [
     icon: <Terminal size={28} />,
     title: 'Level 3 AI Chatbot',
     tagline: 'Human-level conversational AI for E-commerce - WhatsApp, Instagram, Messenger',
+    color: '#7c4dff',
     highlights: [
       'Designed scalable, highly available, and fault-tolerant system from scratch on AWS',
       'Custom VPCs with multiple public/private subnets distributed across availability zones',
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     icon: <GraduationCap size={28} />,
     title: 'Online Hobby Class Platform',
     tagline: 'Educational platform for children under 12 with professional mentors',
+    color: '#ff5252',
     highlights: [
       'Planned and configured VPC infrastructure with public/private subnets and security groups',
       'Created snapshots for EC2 instance backups and launch configurations',
@@ -51,6 +54,7 @@ export const projects: Project[] = [
     icon: <Server size={28} />,
     title: 'Fintech Trading Platform',
     tagline: 'High-frequency trading infrastructure with real-time data processing',
+    color: '#00c853',
     highlights: [
       'Architected low-latency infrastructure for real-time market data processing and analysis',
       'Deployed EKS clusters with horizontal pod autoscaling for peak trading volumes',
@@ -66,6 +70,7 @@ export const projects: Project[] = [
     icon: <Shield size={28} />,
     title: 'Healthcare Compliance System',
     tagline: 'HIPAA-compliant cloud infrastructure for healthcare data management',
+    color: '#00bcd4',
     highlights: [
       'Designed HIPAA-compliant infrastructure with encryption at rest and in transit',
       'Implemented VPC endpoints for secure private connectivity to AWS services',
@@ -81,6 +86,7 @@ export const projects: Project[] = [
     icon: <Cloud size={28} />,
     title: 'Multi-Cloud Migration',
     tagline: 'Enterprise migration from on-premise to AWS with hybrid connectivity',
+    color: '#ff6d00',
     highlights: [
       'Led migration of 50+ servers from on-premise datacenter to AWS infrastructure',
       'Implemented Site-to-Site VPN and Direct Connect for hybrid cloud architecture',

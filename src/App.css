@@ -1,6 +1,4 @@
 @import './styles/globals.css';
-@import './styles/ui/cursor.css';
-@import './styles/ui/particles.css';
 @import './styles/ui/animations.css';
 @import './styles/components/navigation.css';
 @import './styles/components/hero.css';
@@ -12,4 +10,6 @@
 @import './styles/components/certifications.css';
 @import './styles/components/contact.css';
 @import './styles/components/footer.css';
-@import './styles/components/cookie-consent.css';
+@import './styles/components/blog.css';
+@import './styles/components/testimonials.css';
+@import './styles/components/architecture.css';

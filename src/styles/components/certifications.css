@@ -1,53 +1,50 @@
-/* Certifications */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
 .cert-card {
   text-align: center;
-  padding: 2.5rem 2rem;
-  transition: all 0.4s ease;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .cert-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--neon-purple);
-  box-shadow: 0 0 40px rgba(191, 0, 255, 0.2);
+  transform: translateY(-4px);
+  border-color: rgba(124, 77, 255, 0.3);
 }
 
 .cert-icon {
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
   border-radius: 50%;
-  margin: 0 auto 1.5rem;
-  color: #000;
-  box-shadow: 0 0 30px rgba(0, 255, 245, 0.5), 0 0 60px rgba(191, 0, 255, 0.3);
+  margin: 0 auto 1.25rem;
+  color: #0d0d12;
 }
 
 .cert-card h4 {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
 }
 
 .cert-card p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .cert-year {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--neon-cyan);
-  padding: 0.25rem 0.75rem;
-  background: rgba(0, 255, 245, 0.1);
-  border-radius: 50px;
-  border: 1px solid rgba(0, 255, 245, 0.3);
+  padding: 0.2rem 0.6rem;
+  background: rgba(255, 179, 0, 0.08);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 179, 0, 0.15);
 }
