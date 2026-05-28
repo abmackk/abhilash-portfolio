@@ -1,0 +1,174 @@
+{
+  "/home/odyssey/abhilash-portfolio/vitest.config.ts": {
+    "mtime": 1777902428.9790564,
+    "hash": "04e0beea49a14445a3dbc61cf2ba77fb"
+  },
+  "/home/odyssey/abhilash-portfolio/eslint.config.js": {
+    "mtime": 1777902428.936816,
+    "hash": "b8893da386a89dfd3672dad848f4ec7e"
+  },
+  "/home/odyssey/abhilash-portfolio/vite.config.ts": {
+    "mtime": 1777902428.9790564,
+    "hash": "a14207009f3db93a22123e5dca1b6b0f"
+  },
+  "/home/odyssey/abhilash-portfolio/src/main.tsx": {
+    "mtime": 1777902428.975872,
+    "hash": "787e5a07efeb2bf6209d5937195f2f68"
+  },
+  "/home/odyssey/abhilash-portfolio/src/App.tsx": {
+    "mtime": 1778400265.5889397,
+    "hash": "414ad3fb1daea14b0b9eb5f41f5a4f52"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/skillCategories.tsx": {
+    "mtime": 1778247849.1257765,
+    "hash": "117f4ebfe6c32b9213348b0a35724bae"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/resume.ts": {
+    "mtime": 1777969638.4122643,
+    "hash": "2772a9e1fe615f54ec09c04773b01254"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/techStack.ts": {
+    "mtime": 1777902428.9748158,
+    "hash": "9e1611fd6664000d6a8d3d0423d4aef9"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/certifications.ts": {
+    "mtime": 1777902428.973816,
+    "hash": "5c17b0fff966d7c2223f606b8115378a"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/roles.ts": {
+    "mtime": 1777902428.9748158,
+    "hash": "5311e28d6f0e9d5eabcadcc1e17a9ac1"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/projects.tsx": {
+    "mtime": 1778400127.7077138,
+    "hash": "14ed0425f2f7968654de0bb0e6c043dd"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/testimonials.ts": {
+    "mtime": 1778400144.6937156,
+    "hash": "85d3a093116f43cbfc014a157edc0237"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/experiences.ts": {
+    "mtime": 1777969628.1592753,
+    "hash": "a042ec77d3f59846d9d390e2ac6d4fa5"
+  },
+  "/home/odyssey/abhilash-portfolio/src/data/articles.ts": {
+    "mtime": 1778400138.1807034,
+    "hash": "787d58bb89a75a5234f384217e77022e"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/ui/StatCounter.tsx": {
+    "mtime": 1777902428.973816,
+    "hash": "26a7b5440f5947dc85d3605438014ceb"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/ui/ScrollProgress.tsx": {
+    "mtime": 1777902428.9736407,
+    "hash": "9788fd0b04e0a1eeb7677f3bf618f025"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/ui/AnimatedSection.tsx": {
+    "mtime": 1777902428.972816,
+    "hash": "18b00de19da9078fcb8394cff2d0619d"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Blog.tsx": {
+    "mtime": 1778400158.2977407,
+    "hash": "8a1d6cdcaec809bda0cb79007a579015"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Experience.tsx": {
+    "mtime": 1777902428.9726589,
+    "hash": "08d07f6883fc9d013b72d791bf0b4c6f"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Projects.tsx": {
+    "mtime": 1778400254.99592,
+    "hash": "60900543fc3661316608001203108a99"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/About.tsx": {
+    "mtime": 1777971692.6530979,
+    "hash": "21ad951504e10749f892b62efadda454"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Certifications.tsx": {
+    "mtime": 1777902428.9726589,
+    "hash": "22c7503d352efb494c81328c167a549e"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Architecture.tsx": {
+    "mtime": 1778400374.0461407,
+    "hash": "3c8c6f2cd72e1337da35fe469b236953"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Testimonials.tsx": {
+    "mtime": 1778400165.4867542,
+    "hash": "8eec9731d2c839390038ebd29f99a075"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Skills.tsx": {
+    "mtime": 1778247820.730765,
+    "hash": "2d2fdeb3fc618a3bd21de0402f1eacb1"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Contact.tsx": {
+    "mtime": 1778403559.5746865,
+    "hash": "ad50d3271e7687172613a594cb1708f1"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Hero.tsx": {
+    "mtime": 1778239870.5507038,
+    "hash": "0a48bacc943808e596f36e84d4fe795a"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/sections/Resume.tsx": {
+    "mtime": 1778075366.642347,
+    "hash": "f0ffd5a837a516a44bae37e9d09b2d04"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/layout/Navigation.tsx": {
+    "mtime": 1778400223.3498614,
+    "hash": "4b0f9b20de24ae6289c369fa35ef09bf"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/layout/Footer.tsx": {
+    "mtime": 1778400260.45493,
+    "hash": "7c0c65ae01612c9cfbc7687760f679a7"
+  },
+  "/home/odyssey/abhilash-portfolio/src/components/icons/CustomIcons.tsx": {
+    "mtime": 1777971533.0312662,
+    "hash": "9f6a0ba3945c360bf89f38dd80dd3769"
+  },
+  "/home/odyssey/abhilash-portfolio/src/utils/resumeGenerator.ts": {
+    "mtime": 1777902428.9790564,
+    "hash": "ab7d233f65b9359ab3551b4ee7f65ee4"
+  },
+  "/home/odyssey/abhilash-portfolio/src/hooks/useAnimatedCounter.ts": {
+    "mtime": 1777902428.9748158,
+    "hash": "41a3c59ca0f7840a245e428bd7aa23f1"
+  },
+  "/home/odyssey/abhilash-portfolio/src/hooks/useTypewriter.ts": {
+    "mtime": 1777902428.975872,
+    "hash": "d2d92465164d0011d8802a140a47bf4c"
+  },
+  "/home/odyssey/abhilash-portfolio/src/types/index.ts": {
+    "mtime": 1778400105.3617542,
+    "hash": "f921d20c5b94d21be49bb1021ce8303e"
+  },
+  "/home/odyssey/abhilash-portfolio/color-palettes.html": {
+    "mtime": 1778238702.2587917,
+    "hash": "4ed0ea1a2a394bb4ccb7c1502b9d8b4a"
+  },
+  "/home/odyssey/abhilash-portfolio/skill-layouts.html": {
+    "mtime": 1778240846.807407,
+    "hash": "3db24443c90a04cce3f4cb38da096852"
+  },
+  "/home/odyssey/abhilash-portfolio/AGENTS.md": {
+    "mtime": 1777902428.935816,
+    "hash": "d0ff4e5b12162e15f99659032c720a95"
+  },
+  "/home/odyssey/abhilash-portfolio/index.html": {
+    "mtime": 1778400327.9770553,
+    "hash": "2789762675c69e8f243e86a058563d69"
+  },
+  "/home/odyssey/abhilash-portfolio/PROJECT.md": {
+    "mtime": 1778240207.8745599,
+    "hash": "967d6e1a1ddfc3ba13e4eb01a1f6a4b7"
+  },
+  "/home/odyssey/abhilash-portfolio/public/404.html": {
+    "mtime": 1778400344.2540853,
+    "hash": "e18c9c09422483b5f8f6ae056cb42b01"
+  },
+  "/home/odyssey/abhilash-portfolio/public/Abhilash_Makode_Resume.pdf": {
+    "mtime": 1777902428.940816,
+    "hash": "e659051b1f5cd08bf593d58ae43f37e4"
+  },
+  "/home/odyssey/abhilash-portfolio/public/profile.png": {
+    "mtime": 1777902428.969816,
+    "hash": "df4e82f209e22ce258127db604a9132d"
+  }
+}
